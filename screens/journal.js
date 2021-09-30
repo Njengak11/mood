@@ -4,9 +4,9 @@ import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-nati
 const Journal = (props) => {
     return(
         <View style={styles.container}>
-            <Text style={styles.subtitle}>Journal</Text>
+            <Text style={styles.subtitle}>Your journal history</Text>
 
-            <View style={styles.journal}>
+            <View style={styles.journalContainer}>
 
             </View>
         </View>
@@ -21,12 +21,17 @@ const styles = StyleSheet.create({
     },
     subtitle:{
         color:'white',
-        fontSize:25,
-        paddingTop:25
+        fontSize:24,
+        paddingTop:25,
+        paddingLeft:20,
+        marginBottom:25
+        
     },
-    journal:{
-        backgroundColor:'#FFFFCC',
-        paddingBottom:200
+    journalContainer:{
+        backgroundColor:'#fce1b8',
+        paddingBottom:800,
+        borderTopLeftRadius:30,
+        borderTopRightRadius:30,
     },
 })
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image , StatusBar} from 'react-native';
 import Carousel from 'react-native-card-carousel-animated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
@@ -99,6 +99,7 @@ const Home = ({navigation}) => {
     ];
     return(
         <View style={styles.container}>
+             <StatusBar backgroundColor="#7d7a9f"  />
             <Text style={styles.subtitle}>How are you feeling today?</Text>
             
             
@@ -112,6 +113,12 @@ const Home = ({navigation}) => {
                 <Text style={styles.explainText}>Why do you feel this way?</Text>
 
                 <View style={styles.explainArea}>
+                <TextInput
+                style={styles.textInput}
+                placeholder='Date...'
+                placeholderTextColor="grey"
+                
+                />
                 <TextInput
                 style={styles.textInput}
                 placeholder='I felt this way because.....'
@@ -174,7 +181,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     },
     explainContainer:{
-        backgroundColor:'#FFFFCC',
+        backgroundColor:'#fce1b8',
         paddingBottom:200,
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
@@ -185,12 +192,12 @@ const styles = StyleSheet.create({
         borderRadius:30,
         marginLeft:10,
         marginRight:10,
-        height:310,
+        height:360,
         top:15,
         paddingVertical:20
     },
     explainText:{
-        fontSize:18,
+        fontSize:22,
         color:'#7d7a9f',
         paddingTop:15,
         paddingLeft:20,
@@ -205,15 +212,15 @@ const styles = StyleSheet.create({
         borderTopRightRadius:30,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:40,
+        marginTop:60,
         backgroundColor:'white',
         paddingLeft:40,
-        height:100,
+        height:80,
         backgroundColor:'#7d7a9f'
     },
     btnText:{
         color:'white',
-        fontSize:25,
+        fontSize:24,
         top:18,
         alignItems:'center',
         right:20
