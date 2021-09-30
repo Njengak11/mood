@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Carousel from 'react-native-card-carousel-animated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
@@ -112,7 +112,12 @@ const Home = ({navigation}) => {
                 <Text style={styles.explainText}>Why do you feel this way?</Text>
 
                 <View style={styles.explainArea}>
-                    
+                <TextInput
+                style={styles.textInput}
+                placeholder='I felt this way because.....'
+                placeholderTextColor="grey"
+                
+                />
                 </View>
 
                 <TouchableOpacity style={styles.journalBtn}
@@ -178,11 +183,11 @@ const styles = StyleSheet.create({
     explainArea:{
         backgroundColor:'white',
         borderRadius:30,
-        marginLeft:35,
-        marginRight:35,
-        paddingBottom:40,
-        height:295,
-        top:30
+        marginLeft:10,
+        marginRight:10,
+        height:310,
+        top:15,
+        paddingVertical:20
     },
     explainText:{
         fontSize:18,
@@ -191,27 +196,31 @@ const styles = StyleSheet.create({
         paddingLeft:20,
         paddingBottom:10,
     },
+    textInput:{
+        paddingLeft:25
+    },
     journalBtn:{
         width:'100%',
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:80,
+        marginTop:40,
         backgroundColor:'white',
         paddingLeft:40,
-        height:70,
+        height:100,
         backgroundColor:'#7d7a9f'
     },
     btnText:{
         color:'white',
-        fontSize:18,
+        fontSize:25,
         top:18,
-        alignItems:'center'
+        alignItems:'center',
+        right:20
     },
     icon:{
         left:130,
-        bottom:12
+        bottom:17
     }
 })
 export default Home;
