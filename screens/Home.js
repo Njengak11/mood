@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image , StatusBar} from 'react-native';
 import Carousel from 'react-native-card-carousel-animated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -6,8 +6,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const Home = ({navigation}) => {
 
+    const [date, setDate] = useState('');
+    const [journalText,setJournalText] = useState('');
+
     const onPressHandler = () => {
-        navigation.navigate('Journal');
+        navigation.navigate('Journal',{
+            journalText,date
+        });
       }
 
       const data = [
@@ -97,6 +102,8 @@ const Home = ({navigation}) => {
             )
         },
     ];
+
+    
     return(
         <View style={styles.container}>
              <StatusBar backgroundColor="#7d7a9f"  />
@@ -114,12 +121,16 @@ const Home = ({navigation}) => {
 
                 <View style={styles.explainArea}>
                 <TextInput
+                value={date}
+                onChangeText={(date) => setDate(date)}
                 style={styles.textInput}
                 placeholder='Date...'
                 placeholderTextColor="grey"
                 
                 />
                 <TextInput
+                value={journalText}
+                onChangeText={(journalText) => setJournalText(journalText)}
                 style={styles.textInput}
                 placeholder='I felt this way because.....'
                 placeholderTextColor="grey"
@@ -128,8 +139,7 @@ const Home = ({navigation}) => {
                 </View>
 
                 <TouchableOpacity style={styles.journalBtn}
-        onPress={onPressHandler}
-        >
+        onPress={onPressHandler}>
           <Text style={styles.btnText}>Go to journal</Text>
           <FontAwesome style={styles.icon}
           name='angle-right'
