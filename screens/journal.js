@@ -9,8 +9,6 @@ const Journal = ({route}) => {
             <Text style={styles.subtitle}>Your journal history</Text>
             
             <View style={styles.journalContainer}>
-            <Text style={styles.journalDate}>{date}</Text>
-            <Text style={styles.journalEntry}>{journalText}</Text>
             </View>
         </View>
     )

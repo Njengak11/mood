@@ -8,42 +8,20 @@ const Login = ({ navigation} ) => {
         navigation.navigate('Home');
       }
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     return (
         <View style={styles.container} >
-            <Text style={styles.header}>Hello</Text>
-            <Text style={styles.headerTwo}>There.</Text>
+            <Text style={styles.header}>Mood</Text>
+            <Text style={styles.headerTwo}>Logger.</Text>
 
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.textInput}
-                label='Email Address'
-                placeholder='Your Email'
-                placeholderTextColor="white"
-                onChangeText={(email) => setEmail(email)}
-                />
-            </View>
+            
 
-            <View style={styles.inputView}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Password"
-          placeholderTextColor="white"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-
-      <TouchableOpacity style={styles.loginBtn}
+      <TouchableOpacity style={styles.startBtn}
       onPress={onPressHandler}
       >
-        <Text style={styles.loginText}>LOGIN</Text>
+        <Text style={styles.btnText}>START</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.forgotBtn}>Forgot Password?</Text>
-      </TouchableOpacity>
+      
         </View>
     );
 };
@@ -52,53 +30,37 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#7d7a9f',
         height:Dimensions.get('window').height +25,
-        
     },
     header:{
-        fontSize:120,
+        fontSize:100,
         paddingTop:55,
         paddingLeft:15,
-        color:'white'
+        color:'white',
+        textAlign:'center',
+        top:40,
     },
     headerTwo:{
-        fontSize:135,
+        fontSize:110,
         paddingLeft:15,
         color:'white',
-        marginBottom:25
-    },
-    inputView:{
-        backgroundColor:'#64627f',
-        borderRadius:30,
-        width:'70%',
-        height:40,
         marginBottom:25,
-        alignItems:'center',
-        marginLeft:55
+        textAlign:'center',
+        top:40,
+        fontWeight:'bold'
     },
-    textInput:{
-        height:50,
-        flex:1,
-        padding:10,
-        marginLeft:10
-    },
-    forgotBtn:{
-        height:30,
-        marginTop:35,
-        marginLeft:150,
-        
-    },
-    loginBtn:{
+    startBtn:{
         width:'80%',
-        borderRadius:25,
-        height:50,
+        borderRadius:45,
+        height:80,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:40,
+        marginTop:95,
         backgroundColor:'white',
-        marginLeft:40
+        marginLeft:40,
+        top:80
     },
-    loginText:{
-
+    btnText:{
+      fontSize:35
     }
   });
 

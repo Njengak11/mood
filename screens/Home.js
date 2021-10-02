@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image , StatusBar} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image , StatusBar, KeyboardAvoidingView} from 'react-native';
 import Carousel from 'react-native-card-carousel-animated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
@@ -15,7 +15,7 @@ const Home = ({navigation}) => {
         });
       }
 
-      const data = [
+      const mood = [
         {
             id: '1',
             child: (
@@ -81,10 +81,10 @@ const Home = ({navigation}) => {
             id: '6',
             child: (
                 <View style={styles.cards}>
-                    <Text style={styles.cardText}>Relaxed</Text>
+                    <Text style={styles.cardText}>Okay</Text>
                     <Image 
                     style={styles.image}
-                    source={require('../assets/images/relaxed.png')}
+                    source={require('../assets/images/neutral.png')}
                     />
                 </View>
             )
@@ -101,7 +101,72 @@ const Home = ({navigation}) => {
                 </View>
             )
         },
+        {
+            id: '8',
+            child: (
+                <View style={styles.cards}>
+                    <Text style={styles.cardText}>Confident</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../assets/images/cool.png')}
+                    />
+                </View>
+            )
+        },
+        {
+            id: '9',
+            child: (
+                <View style={styles.cards}>
+                    <Text style={styles.cardText}>Relaxed</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../assets/images/relax.png')}
+                    />
+                </View>
+            )
+        },
     ];
+
+    const activity = [
+        {
+            id: '1',
+            child: (
+                <View style={styles.cards}>
+                    <Text style={styles.cardText}>Working</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../assets/images/briefcase.png')}
+                    />
+                    
+                </View>
+            ),
+        },
+        {
+            id: '2',
+            child: (
+                <View style={styles.cards}>
+                    <Text style={styles.cardText}>Working Out</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../assets/images/workout2.png')}
+                    />
+                </View>
+            )
+        },
+        {
+            id: '3',
+            child: (
+                <View style={styles.cards}>
+                    <Text style={styles.cardText}>Chlling</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../assets/images/pad.png')}
+                    />
+                </View>
+            )
+        },
+    ];
+
 
     
     return(
@@ -111,34 +176,31 @@ const Home = ({navigation}) => {
             
             
 			<View style={styles.carousel}>
-            <Carousel cards={data} />
+            <Carousel cards={mood} />
             </View>
 
-            <View style={{height:5}}></View>
+            <Text style={styles.subtitle2}>What are you doing?</Text>
+            <View style={styles.carousel2}>
+            <Carousel cards={activity} />
+            </View>
 
-            <View style={styles.explainContainer}>
-                <Text style={styles.explainText}>Why do you feel this way?</Text>
 
-                <View style={styles.explainArea}>
+            
+            <Text style={styles.inputText}>Who are you with?</Text>
+            <KeyboardAvoidingView
+            keyboardVerticalOffset={60}
+            >
+            <View style={styles.inputView}>
                 <TextInput
-                value={date}
-                onChangeText={(date) => setDate(date)}
-                style={styles.textInput}
-                placeholder='Date...'
-                placeholderTextColor="grey"
-                
+                 style={styles.textInput}
+                 placeholderTextColor="white"
+                 placeholder='Mikey from work'
+                 placeholderTextColor="grey"
                 />
-                <TextInput
-                value={journalText}
-                onChangeText={(journalText) => setJournalText(journalText)}
-                style={styles.textInput}
-                placeholder='I felt this way because.....'
-                placeholderTextColor="grey"
-                
-                />
-                </View>
+            </View>
+            </KeyboardAvoidingView>
 
-                <TouchableOpacity style={styles.journalBtn}
+            <TouchableOpacity style={styles.journalBtn}
         onPress={onPressHandler}>
           <Text style={styles.btnText}>Go to journal</Text>
           <FontAwesome style={styles.icon}
@@ -147,7 +209,6 @@ const Home = ({navigation}) => {
           color='white'
           />
         </TouchableOpacity>
-            </View>
         </View>
     )
 }
@@ -162,11 +223,24 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:24,
         paddingTop:25,
-        paddingLeft:20
+        textAlign:'center',
+        top:20
+    },
+    subtitle2:{
+        color:'white',
+        fontSize:24,
+        textAlign:'center',
+        bottom:50
     },
     carousel:{
-        bottom:100,
-        height: 280,
+        bottom:80,
+        height: 230,
+        marginLeft:25,
+        marginRight:25
+    },
+    carousel2:{
+        bottom:140,
+        height: 230,
         marginLeft:25,
         marginRight:25
     },
@@ -174,70 +248,65 @@ const styles = StyleSheet.create({
         backgroundColor:'#7d7a9f',
         width: '100%',
         height: '100%',
-        paddingTop:18,
-        paddingBottom:22,
         alignItems:'center',
-        
     },
     cardText:{
-        color:'white',
-        top:132,
-        
+        color:'white', 
+        fontSize:15,
+        marginBottom:10
     },
     image:{
         flex: 1,
     width: '100%',
-    height: '100%',
     resizeMode: 'contain',
     },
-    explainContainer:{
-        backgroundColor:'#fce1b8',
-        paddingBottom:200,
-        borderTopLeftRadius:30,
-        borderTopRightRadius:30,
-        bottom:100
-    },
-    explainArea:{
-        backgroundColor:'white',
+    inputView:{
+        backgroundColor:'#64627f',
         borderRadius:30,
-        marginLeft:10,
-        marginRight:10,
-        height:360,
-        top:15,
-        paddingVertical:20
-    },
-    explainText:{
-        fontSize:22,
-        color:'#7d7a9f',
-        paddingTop:15,
-        paddingLeft:20,
-        paddingBottom:10,
+        width:'70%',
+        height:50,
+        marginBottom:25,
+        alignItems:'center',
+        marginLeft:55,
+        bottom:110,
     },
     textInput:{
-        paddingLeft:25
+        height:50,
+        flex:1,
+        marginLeft:10,
+        paddingRight:100,
+        color:'white',
+    },
+    inputText:{
+        color:'white',
+        fontSize:24,
+        textAlign:'center',
+        marginBottom:15, 
+        bottom:120,
     },
     journalBtn:{
-        width:'100%',
-        borderTopLeftRadius:30,
-        borderTopRightRadius:30,
+        borderRadius:50,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:60,
+        marginTop:20,
         backgroundColor:'white',
-        paddingLeft:40,
-        height:80,
-        backgroundColor:'#7d7a9f'
+        paddingLeft:50,
+        height:70,
+        backgroundColor:'#fce1b8',
+        marginLeft:20,
+        marginRight:20,
+        bottom:90,
     },
     btnText:{
         color:'white',
         fontSize:24,
         top:18,
-        alignItems:'center',
+        textAlign:'center',
         right:20
     },
     icon:{
         left:130,
         bottom:17
-    }
+    },
 })
 export default Home;
