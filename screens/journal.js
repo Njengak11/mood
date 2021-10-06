@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions,  } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
 const Journal = ({route}) => {
 
@@ -9,6 +10,10 @@ const Journal = ({route}) => {
             <Text style={styles.subtitle}>Your journal history</Text>
             
             <View style={styles.journalContainer}>
+                
+                <Text style={styles.journalEntry}>{route.params.paramKey}</Text>
+                <Text style={styles.journalEntry}>{route.params.paramKey}</Text>
+                
             </View>
         </View>
     )
@@ -38,7 +43,9 @@ const styles = StyleSheet.create({
         paddingLeft:25
     },
     journalEntry:{
-        paddingLeft:25
+        paddingLeft:25,
+        fontSize:20,
+        color:'white'
     }
 })
 

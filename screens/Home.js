@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity, Image , StatusBar, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity,TouchableWithoutFeedback, Image , StatusBar, KeyboardAvoidingView, Platform,Button, keyboard  } from 'react-native';
 import Carousel from 'react-native-card-carousel-animated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
@@ -11,7 +11,8 @@ const Home = ({navigation}) => {
 
     const onPressHandler = () => {
         navigation.navigate('Journal',{
-            journalText,date
+            paramKey:journalText,
+            paramKey:date
         });
       }
 
@@ -127,46 +128,6 @@ const Home = ({navigation}) => {
         },
     ];
 
-    const activity = [
-        {
-            id: '1',
-            child: (
-                <View style={styles.cards}>
-                    <Text style={styles.cardText}>Working</Text>
-                    <Image 
-                    style={styles.image}
-                    source={require('../assets/images/briefcase.png')}
-                    />
-                    
-                </View>
-            ),
-        },
-        {
-            id: '2',
-            child: (
-                <View style={styles.cards}>
-                    <Text style={styles.cardText}>Working Out</Text>
-                    <Image 
-                    style={styles.image}
-                    source={require('../assets/images/workout2.png')}
-                    />
-                </View>
-            )
-        },
-        {
-            id: '3',
-            child: (
-                <View style={styles.cards}>
-                    <Text style={styles.cardText}>Chlling</Text>
-                    <Image 
-                    style={styles.image}
-                    source={require('../assets/images/pad.png')}
-                    />
-                </View>
-            )
-        },
-    ];
-
 
     
     return(
@@ -179,27 +140,29 @@ const Home = ({navigation}) => {
             <Carousel cards={mood} />
             </View>
 
-            <Text style={styles.subtitle2}>What are you doing?</Text>
-            <View style={styles.carousel2}>
-            <Carousel cards={activity} />
-            </View>
-
-
-            
-            <Text style={styles.inputText}>Who are you with?</Text>
+            <View style={styles.wrapper}>
+            <Text style={styles.wrapperSubtitle}>Why do you feel this way?</Text>
+            <View style={styles.inputContainer}>
             <KeyboardAvoidingView
-            keyboardVerticalOffset={60}
-            >
-            <View style={styles.inputView}>
-                <TextInput
-                 style={styles.textInput}
-                 placeholderTextColor="white"
-                 placeholder='Mikey from work'
-                 placeholderTextColor="grey"
-                />
-            </View>
-            </KeyboardAvoidingView>
+behavior={Platform.OS === 'ios' ? 'height' : 'padding'}
+>
+<TextInput
+                    style={styles.wrapperInput}
+                    placeholder='Date..'
+                    value={date}
+                    onChangeText={(date) => setDate(date)}
+                    /> 
 
+                   <TextInput
+                    style={styles.wrapperInput}
+                    placeholder='I felt this way because...'
+                    value={journalText}
+                    onChangeText={(journalText) => setJournalText(journalText)}
+                    /> 
+                </KeyboardAvoidingView>
+            </View>
+ 
+                </View>   
             <TouchableOpacity style={styles.journalBtn}
         onPress={onPressHandler}>
           <Text style={styles.btnText}>Go to journal</Text>
@@ -226,63 +189,49 @@ const styles = StyleSheet.create({
         textAlign:'center',
         top:20
     },
-    subtitle2:{
-        color:'white',
-        fontSize:24,
-        textAlign:'center',
-        bottom:50
-    },
     carousel:{
-        bottom:80,
-        height: 230,
-        marginLeft:25,
-        marginRight:25
-    },
-    carousel2:{
-        bottom:140,
+        bottom:59,
         height: 230,
         marginLeft:25,
         marginRight:25
     },
     cards:{
         backgroundColor:'#7d7a9f',
-        width: '100%',
-        height: '100%',
+        width: 350,
+        height: 120,
         alignItems:'center',
     },
     cardText:{
         color:'white', 
         fontSize:15,
-        marginBottom:10
     },
     image:{
         flex: 1,
     width: '100%',
     resizeMode: 'contain',
     },
-    inputView:{
-        backgroundColor:'#64627f',
+    wrapper:{ 
+        backgroundColor:'#fce1b8',
+        paddingBottom:50,
         borderRadius:30,
-        width:'70%',
-        height:50,
-        marginBottom:25,
-        alignItems:'center',
-        marginLeft:55,
-        bottom:110,
     },
-    textInput:{
-        height:50,
-        flex:1,
-        marginLeft:10,
-        paddingRight:100,
-        color:'white',
-    },
-    inputText:{
+    wrapperSubtitle:{
         color:'white',
         fontSize:24,
+        paddingTop:25,
         textAlign:'center',
-        marginBottom:15, 
-        bottom:120,
+    },
+    inputContainer:{
+        backgroundColor:'white',
+        top:10,
+        marginLeft:25,
+        marginRight:25,
+        borderRadius:20,
+        paddingBottom:200
+    },
+    wrapperInput:{
+       marginTop:15,
+       paddingLeft:25,
     },
     journalBtn:{
         borderRadius:50,
@@ -295,7 +244,6 @@ const styles = StyleSheet.create({
         backgroundColor:'#fce1b8',
         marginLeft:20,
         marginRight:20,
-        bottom:90,
     },
     btnText:{
         color:'white',
@@ -308,5 +256,9 @@ const styles = StyleSheet.create({
         left:130,
         bottom:17
     },
+
+
+   
 })
 export default Home;
+

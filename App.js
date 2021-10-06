@@ -36,6 +36,7 @@ render(){
         name="Journal"
         component={Journal}
         options={{
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#7d7a9f',
           },
